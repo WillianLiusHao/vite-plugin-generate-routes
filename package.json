@@ -11,6 +11,9 @@
   "files": [
     "/dist"
   ],
+  "repository": {
+    "url": "https://github.com/WillianLiusHao/vite-plugin-generate-routes.git"
+  },
   "author": "william",
   "license": "MIT",
   "dependencies": {

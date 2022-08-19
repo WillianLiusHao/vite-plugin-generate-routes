@@ -7,7 +7,6 @@
 import pluginRoutes from 'vite-plugin-generate-routes'
 export default defineConfig({
   plugins: [
-    vue(),
     pluginRoutes()
   ]
   ...
@@ -17,23 +16,25 @@ export default defineConfig({
 ## nuxt rules
 
 ```js
-pages/
---| people/
------| _id.vue
------| index.vue
---| _.vue
---| index.vue
-```
+pages：
+--| page1.vue
+--| id.vue
+--| page2
+----| index.vue
+----| page21.vue
+----| _id_.vue
+--| page3
+----| page31.vue
+----| #componentName.vue
 
 =>
 
-```js
-/ -> index.vue
-/people -> people/index.vue
-/people/123 -> people/_id.vue
-/about -> _.vue
-/about/careers -> _.vue
-/about/careers/chicago -> _.vue
+routes：
+--| page1
+--| page2
+----| page2/page21
+----| page2/:id
+----| page31.vue
 ```
 
 - start with '\_' means dynamic component：`page/_id.vue` => `/page/:id`
