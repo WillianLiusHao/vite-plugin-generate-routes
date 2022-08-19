@@ -50,7 +50,7 @@ const parsePagesDirectory = (ctx) => {
       return {
         name: name,
         path: `/${name}`,
-        children: fs.readdirSync(Path.join(__dirname, `../../src/${path}/${file}`)).map((f: string) => {
+        children: fs.readdirSync(Path.join(__dirname, `../../../src/${path}/${file}`)).map((f: string) => {
           return generatefileConfig(`${path}/${file}`, f)
         })
         
@@ -58,7 +58,7 @@ const parsePagesDirectory = (ctx) => {
     }
   }
   // 如何处理项目根路径和插件路径问题？
-  const dirPositon2Plugin = Path.join(__dirname, `../../src/${rootDir}`) // 路由页面相对于插件的位置
+  const dirPositon2Plugin = Path.join(__dirname, `../../../src/${rootDir}`) // 路由页面相对于插件的位置
   const routes = fs.readdirSync(dirPositon2Plugin).map((f) => {
     return generatefileConfig(rootDir, f)
   })

@@ -59,13 +59,13 @@ var parsePagesDirectory = (ctx2) => {
       return {
         name,
         path: `/${name}`,
-        children: fs.readdirSync(Path.join(__dirname, `../../src/${path}/${file}`)).map((f) => {
+        children: fs.readdirSync(Path.join(__dirname, `../../../src/${path}/${file}`)).map((f) => {
           return generatefileConfig(`${path}/${file}`, f);
         })
       };
     }
   };
-  const dirPositon2Plugin = Path.join(__dirname, `../../src/${rootDir}`);
+  const dirPositon2Plugin = Path.join(__dirname, `../../../src/${rootDir}`);
   const routes = fs.readdirSync(dirPositon2Plugin).map((f) => {
     return generatefileConfig(rootDir, f);
   });
