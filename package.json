@@ -1,0 +1,25 @@
+{
+  "name": "vite-plugin-generate-routes",
+  "version": "1.0.2",
+  "description": "auto generate routes",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format cjs,esm"
+  },
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "author": "william",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^18.7.6",
+    "js-beautify": "^1.14.5",
+    "ts-replace-all": "^1.0.0",
+    "tsup": "^6.2.2",
+    "vite": "^3.0.8"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
