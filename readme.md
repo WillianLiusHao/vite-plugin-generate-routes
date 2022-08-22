@@ -1,5 +1,7 @@
 # vite-plugin-generate-routes
 
+> auto watch page's change and generate routes
+
 ## use
 
 ```js
@@ -46,3 +48,27 @@ routes：
 
 - Type: `string`
 - Default: `./src/views`
+
+### extend
+
+- Type: `Function`
+```js
+export default defineConfig({
+  plugins: [
+    pluginRoutes({
+      extend: (route) => {
+        if(route.path === '/') {
+          route = {
+            title: 'root'
+            meta: {
+              auth: false
+            },
+            ...route
+          }
+        }
+      }
+    })
+  ]
+  ...
+}
+```
