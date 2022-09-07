@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-generate-routes",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "auto generate routes",
   "main": "dist/index.js",
   "scripts": {
