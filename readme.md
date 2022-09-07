@@ -36,7 +36,7 @@ routes：
 --| page2
 ----| page2/page21
 ----| page2/:id
-----| page31.vue
+----| page31
 ```
 
 - start with '\_' means dynamic component：`page/_id.vue` => `/page/:id`
@@ -47,7 +47,7 @@ routes：
 ### dir
 
 - Type: `string`
-- Default: `./src/views`
+- Default: `src/views`
 
 ### extend
 

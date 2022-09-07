@@ -13,7 +13,7 @@ const parsePagesDirectory = (ctx) => {
   const rootDir = ctx.dir
   const generatefileConfig = (path: string, file: string) => {
     const name = file.split('.')[0] // 文件名
-    let importPath = `../${path}/${file}`
+    let importPath = `../../${path}/${file}`
 
     //  *如果是组件
     if (file.endsWith('.vue')) {
@@ -41,7 +41,7 @@ const parsePagesDirectory = (ctx) => {
         path: Path,
         component: Compnent
       }
-      if(ctx.hook.extend) {
+      if(ctx.hook?.extend instanceof Function) {
         routeConfig = ctx.hook.extend(routeConfig)
       }
       return routeConfig
@@ -50,7 +50,7 @@ const parsePagesDirectory = (ctx) => {
       return {
         name: name,
         path: `/${name}`,
-        children: fs.readdirSync(Path.join(__dirname, `../../../src/${path}/${file}`)).map((f: string) => {
+        children: fs.readdirSync(`${path}/${file}`).map((f: string) => {
           return generatefileConfig(`${path}/${file}`, f)
         })
         
@@ -58,8 +58,7 @@ const parsePagesDirectory = (ctx) => {
     }
   }
   // 如何处理项目根路径和插件路径问题？
-  const dirPositon2Plugin = Path.join(__dirname, `../../../src/${rootDir}`) // 路由页面相对于插件的位置
-  const routes = fs.readdirSync(dirPositon2Plugin).map((f) => {
+  const routes = fs.readdirSync(rootDir).map((f) => {
     return generatefileConfig(rootDir, f)
   })
   return { routes }
@@ -83,7 +82,7 @@ const updateRoutes = (ctx) => {
     space_in_empty_paren: true
   })
   // 生成配置文件(无需用户导入，在用户的路由文件下给他生成配置)
-  fs.writeFileSync('./src/router/routes.ts', 
+  fs.writeFileSync('src/router/routes.ts', 
     Beautify.js(`
       ${routerStr}\n\n
       ${exportSrt}

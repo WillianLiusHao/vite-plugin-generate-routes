@@ -32,26 +32,26 @@ module.exports = __toCommonJS(src_exports);
 
 // src/routerParse.ts
 var fs = __toESM(require("fs"));
-var Path = __toESM(require("path"));
 var import_ts_replace_all = require("ts-replace-all");
 var Beautify = __toESM(require("js-beautify"));
 var parsePagesDirectory = (ctx2) => {
   const rootDir = ctx2.dir;
   const generatefileConfig = (path, file) => {
+    var _a;
     const name = file.split(".")[0];
-    let importPath = `../${path}/${file}`;
+    let importPath = `../../${path}/${file}`;
     if (file.endsWith(".vue")) {
       const Compnent = `() => import('${importPath}')`;
       const startIndex = importPath.indexOf(rootDir) + rootDir.length;
-      let Path2 = importPath.substring(startIndex, importPath.length - 4);
-      Path2 = Path2.replace("/index", "").replace("_", ":");
-      const Name = Path2.slice(1, Path2.length).replace("/", "-").replace(":", "");
+      let Path = importPath.substring(startIndex, importPath.length - 4);
+      Path = Path.replace("/index", "").replace("_", ":");
+      const Name = Path.slice(1, Path.length).replace("/", "-").replace(":", "");
       let routeConfig = {
         name: Name,
-        path: Path2,
+        path: Path,
         component: Compnent
       };
-      if (ctx2.hook.extend) {
+      if (((_a = ctx2.hook) == null ? void 0 : _a.extend) instanceof Function) {
         routeConfig = ctx2.hook.extend(routeConfig);
       }
       return routeConfig;
@@ -59,14 +59,13 @@ var parsePagesDirectory = (ctx2) => {
       return {
         name,
         path: `/${name}`,
-        children: fs.readdirSync(Path.join(__dirname, `../../../src/${path}/${file}`)).map((f) => {
+        children: fs.readdirSync(`${path}/${file}`).map((f) => {
           return generatefileConfig(`${path}/${file}`, f);
         })
       };
     }
   };
-  const dirPositon2Plugin = Path.join(__dirname, `../../../src/${rootDir}`);
-  const routes = fs.readdirSync(dirPositon2Plugin).map((f) => {
+  const routes = fs.readdirSync(rootDir).map((f) => {
     return generatefileConfig(rootDir, f);
   });
   return { routes };
@@ -87,7 +86,7 @@ var updateRoutes = (ctx2) => {
     space_in_empty_paren: true
   });
   fs.writeFileSync(
-    "./src/router/routes.ts",
+    "src/router/routes.ts",
     Beautify.js(`
       ${routerStr}
 
@@ -102,7 +101,7 @@ var updateRoutes = (ctx2) => {
 
 // src/ctx.ts
 var ctx = {
-  dir: "./src/views",
+  dir: "src/views",
   server: {},
   routes: {},
   hook: {
@@ -137,7 +136,6 @@ var pluginRoutes = (userOptions = {}) => {
     transform(src, id) {
     },
     configResolved(resolvedConfig) {
-      console.log("\u8FD9\u91CC\u662FconfigResolved\u94A9\u5B50");
       ctx.dir = userOptions.dir || ctx.dir;
       if (userOptions.extend) {
         ctx.hook.extend = userOptions.extend;
@@ -145,7 +143,6 @@ var pluginRoutes = (userOptions = {}) => {
       updateRoutes(ctx);
     },
     configureServer(server) {
-      console.log("\u8FD9\u91CC\u662FconfigureServer\u94A9\u5B50");
       ctx.setupViteServer(server.watcher);
     }
   };

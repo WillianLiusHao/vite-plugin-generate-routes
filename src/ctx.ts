@@ -2,7 +2,7 @@ import type { FSWatcher } from 'fs'
 import { updateRoutes } from './routerParse'
 
 export const ctx = {
-  dir: './src/views',
+  dir: 'src/views',
   server: {},
   routes: {},
   hook: {
