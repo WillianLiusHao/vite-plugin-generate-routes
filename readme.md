@@ -40,7 +40,7 @@ routes：
 ```
 
 - start with '\_' means dynamic component：`page/_id.vue` => `/page/:id`
-- start width '#' means ignore
+- start with '#' means ignore
 
 ## config
 
