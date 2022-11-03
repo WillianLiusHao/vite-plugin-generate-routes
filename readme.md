@@ -20,11 +20,10 @@ export default defineConfig({
 ```js
 pages：
 --| page1.vue
---| id.vue
 --| page2
 ----| index.vue
 ----| page21.vue
-----| _id_.vue
+----| _id.vue
 --| page3
 ----| page31.vue
 ----| #componentName.vue
@@ -34,9 +33,9 @@ pages：
 routes：
 --| page1
 --| page2
-----| page2/page21
-----| page2/:id
-----| page31
+--| page2/page21
+--| page2/:id
+--| page31
 ```
 
 - start with '\_' means dynamic component：`page/_id.vue` => `/page/:id`
